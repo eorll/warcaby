@@ -6,7 +6,19 @@ namespace draughts
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var board = Board.GetInstance;
+            var boardFields = board.Fields;
+            foreach (var field in boardFields)
+            {
+                if (field != null)
+                {
+                    Console.WriteLine("null");
+                }
+                else
+                {
+                    Console.WriteLine("Pawn");
+                }
+            }
         }
     }
 }
