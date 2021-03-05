@@ -8,8 +8,32 @@ namespace draughts
         {
             var board = Board.GetInstance;
             var boardFields = board.Fields;
-            DrawBoard(boardFields);
+            var game = Game.GetInstance;
+            bool start = true;
+            while (start)
+            {
+                DrawBoard(boardFields);
+                Console.WriteLine("Choose pawn");
+                Console.WriteLine("X: ");
+                var pawnX = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Y: ");
+                var pawnY = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Move pawn");
+                Console.WriteLine("X: ");
+                var playerMoveX = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Y: ");
+                var playerMoveY = Convert.ToInt32(Console.ReadLine());
 
+                var pawn = boardFields[pawnX, pawnY];
+                if (!game.MoveAllowed(pawn, (playerMoveX, playerMoveY), boardFields))
+                {
+                    Console.WriteLine("Move not allowed");
+                }
+
+                Console.ReadLine();
+                Console.Clear();
+            }
+            
         }
         
         static void DrawBoard(Pawn[,] boardFields)
@@ -46,7 +70,7 @@ namespace draughts
                 Console.Write("|");
                 Console.Write(Environment.NewLine);
             }
-            Console.Write(" 0 1 2 3 4 5 6 7 8 9");
+            Console.WriteLine("  0 1 2 3 4 5 6 7 8 9");
         }
     }
 }
