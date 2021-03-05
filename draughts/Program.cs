@@ -8,17 +8,36 @@ namespace draughts
         {
             var board = Board.GetInstance;
             var boardFields = board.Fields;
-            foreach (var field in boardFields)
+
+            int rowLength = boardFields.GetLength(0);
+            int colLength = boardFields.GetLength(1);
+            
+            
+            for (int i = 0; i < rowLength; i++)
             {
-                if (field != null)
+                for (int j = 0; j < colLength; j++)
                 {
-                    Console.WriteLine("null");
+                    if (boardFields[i, j] == null)
+                    {
+                        Console.Write("  ");
+                    }
+                    else
+                    {
+                        if (boardFields[i, j].IsWhite)
+                        {
+                            Console.Write("#");
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red; 
+                            Console.Write("#");
+                            Console.ForegroundColor = ConsoleColor.White;
+                        }
+                    }
                 }
-                else
-                {
-                    Console.WriteLine("Pawn");
-                }
+                Console.Write(Environment.NewLine);
             }
+            Console.ReadLine();
         }
     }
 }
